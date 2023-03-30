@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Spinning Logo with Text Overlay</title>
+    <style>
+        body {
+            background: #444654;
+        }
+
+        .overlay {
+            background: rgba(68, 70, 84, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        #logo {
+            width: 100px;
+            height: 100px;
+            background-color: #7289DA;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            animation: spin 2s linear infinite;
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #text {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -18px;
+            margin-left: 20px;
+            animation: slide 2s ease-in-out forwards;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-50%);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="overlay"></div>
+<div id="logo"></div>
+<div id="text">Hello, world!</div>
+<script>
+    setTimeout(function() {
+        moveAndFadeIn(document.getElementById("logo"), document.getElementById("text"));
+    }, 2000);
+
+    function moveAndFadeIn(logo, text) {
+        var start = Date.now();
+        var duration = 1500; // milliseconds
+        var startPos = 100; // starting position for logo
+        var endPos = 40; // ending position for logo
+        var textStartPos = 100; // starting position for text
+        var textEndPos = 60; // ending position for text
+
+        function step() {
+            var elapsed = Date.now() - start;
+
+            if (elapsed > duration) {
+                logo.style.left = endPos + "%";
+                text.style.left = textEndPos + "%";
+                logo.style.opacity = 1;
+                text.style.opacity = 1;
+                text.style.display = "block";
+                return;
+            }
+
+            const progress = elapsed / duration;
+            const easeProgress = easeInOut(progress);
+
+            const logoPos = startPos - (startPos - endPos) * easeProgress;
+            const textPos = textStartPos - (textStartPos - textEndPos) * easeProgress;
+            const logoOpacity = easeProgress;
+            const textOpacity = easeProgress;
+
+            logo.style.left = logoPos + "%";
+            text.style.left = textPos + "%";
+            logo.style.opacity = logoOpacity;
+            text.style.opacity = textOpacity;
+
+            requestAnimationFrame(step);
+        }
+
+        function easeInOut(t) {
+            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        }
+
+        requestAnimationFrame(step);
+    }
+
+</script>
+</body>
+</html>

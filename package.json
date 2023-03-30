@@ -1,0 +1,53 @@
+{
+	"name": "kamiknows",
+	"version": "1.0.0",
+	"description": "Continuation of idkr, krunker client, in typescript with plugin support",
+	"main": "./app/src/main.js",
+	"private": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"dev": "tsc && electron build/src/main.js --enable-login",
+		"start": "electron .",
+		"startd": "npm start -- --debug",
+		"startd-linux": "ELECTRON_ENABLE_STACK_DUMPING=1 ELECTRON_ENABLE_LOGGING=true npm start -- --debug",
+		"pack": "cd build && electron-builder --dir",
+		"dist": "electron-builder",
+		"release": "electron-builder",
+		"postinstall": "electron-builder install-app-deps"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Edouard127/kamiknows.git"
+	},
+	"keywords": [
+		"Krunker"
+	],
+	"author": "Edouard127",
+	"license": "AGPL-3.0-only",
+	"devDependencies": {
+		"@babel/core": "^7.13.16",
+		"@babel/eslint-parser": "^7.13.14",
+		"@babel/plugin-proposal-class-properties": "^7.13.0",
+		"@babel/plugin-proposal-private-methods": "^7.13.0",
+		"@types/discord-rpc": "^4.0.4",
+		"@types/electron-localshortcut": "^3.1.0",
+		"@types/node": "^14.17.11",
+		"electron": "^9.4.4",
+		"electron-builder": "^23.6.0",
+		"electron-packager": "^17.1.1",
+		"electron-store": "^8.1.0",
+		"eslint": "^8.7.0",
+		"typescript": "^5.0.2"
+	},
+	"dependencies": {
+		"typescript": "^5.0.2",
+		"discord-rpc": "^4.0.1",
+		"electron-localshortcut": "^3.2.1",
+		"electron-log": "^4.3.5",
+		"electron-store": "^8.0.0",
+		"electron-updater": "^5.0.0",
+		"v8-compile-cache": "^2.3.0",
+		"yargs": "^17.1.1"
+	}
+}
