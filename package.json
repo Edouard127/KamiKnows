@@ -5,15 +5,11 @@
 	"main": "./app/src/main.js",
 	"private": true,
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc",
 		"dev": "tsc && electron build/src/main.js --enable-login",
 		"start": "electron .",
-		"startd": "npm start -- --debug",
-		"startd-linux": "ELECTRON_ENABLE_STACK_DUMPING=1 ELECTRON_ENABLE_LOGGING=true npm start -- --debug",
 		"pack": "cd build && electron-builder --dir",
-		"dist": "electron-builder",
-		"release": "electron-builder",
+		"dist": "electron-builder --publish=always",
 		"postinstall": "electron-builder install-app-deps"
 	},
 	"repository": {

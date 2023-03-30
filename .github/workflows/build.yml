@@ -30,9 +30,9 @@ jobs:
         run: npm i typescript -g
 
       - name: Build TypeScript
-        run: tsc
+        run: npm run build
 
-      - name: Build and release if draft exists
+      - name: Build and release
         run: npm run dist
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
