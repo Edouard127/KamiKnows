@@ -13,27 +13,25 @@ export default class WindowManager {
 		this.hideOnShow = hideKrunkerWindowsOnShow;
 		this.shown = false;
 
-		document.addEventListener("DOMContentLoaded", () => {
-			if (!document.getElementById("kamiknows-windowHolder")) {
-				let w = document.createElement("div");
-				w.setAttribute("id", "kamiknows-windowHolder");
-				w.setAttribute("style", "display: none;");
-				w.innerHTML = '<div id="kamiknows-menuWindow"></div>';
-				document.getElementsByTagName("body")[0].appendChild(w);
+		if (!document.getElementById("kamiknows-windowHolder")) {
+			let w = document.createElement("div");
+			w.setAttribute("id", "kamiknows-windowHolder");
+			w.setAttribute("style", "display: none;");
+			w.innerHTML = '<div id="kamiknows-menuWindow"></div>';
+			document.getElementsByTagName("body")[0].appendChild(w);
 
-				let s = document.createElement("style");
-				s.setAttribute("class", this.randomStr(10));
-				s.setAttribute("id", this.randomStr(10));
-				s.innerHTML = baseStyles;
-				if (config.get("enableMenuTimer")) s.innerHTML += require("./styles-injection").menuTimerStyles;
-				document.getElementsByTagName("body")[0].appendChild(s);
+			let s = document.createElement("style");
+			s.setAttribute("class", this.randomStr(10));
+			s.setAttribute("id", this.randomStr(10));
+			s.innerHTML = baseStyles;
+			if (config.get("enableMenuTimer")) s.innerHTML += require("./styles-injection").menuTimerStyles;
+			document.getElementsByTagName("body")[0].appendChild(s);
 
-				document.getElementsByTagName("body")[0].addEventListener("click", e => {
-					// @ts-ignore
-					(!e.path.find(p => p.id === "kamiknows-menuWindow" || p.id === this.callerId)) && this.hide();
-				});
-			}
-		});
+			document.getElementsByTagName("body")[0].addEventListener("click", e => {
+				// @ts-ignore
+				(!e.path.find(p => p.id === "kamiknows-menuWindow" || p.id === this.callerId)) && this.hide();
+			});
+		}
 	}
 
 	public randomStr(length: number) {

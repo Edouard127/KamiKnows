@@ -1,15 +1,12 @@
 // @ts-nocheck
 
-import AccountManager from "../modules/account-manager"
-import {ISetting} from "../core/interface/ISetting";
+import KrunkerClient from "../core/class/KrunkerClient";
 
-export default function start(settings: ISetting[]) {
+export default function start(client: KrunkerClient) {
 	// Workaround to avoid getting client popup
 	/** @type {object} */
 	// @ts-ignore
 	(window)["OffCliV"] = true;
-
-	const accountManager = new AccountManager();
 
 	document.addEventListener("DOMContentLoaded", async() => {
 		let windowsObserver = new MutationObserver(async() => {
@@ -27,13 +24,14 @@ export default function start(settings: ISetting[]) {
 		});
 		windowsObserver.observe(document.getElementById("instructions"), { childList: true });
 
-		accountManager.injectStyles();
+		client.account.init()
+		client.account.injectStyles()
 	});
 
 	function getCSettings() {
 		let tempHTML = "";
 		let previousCategory = null;
-		settings.forEach(entry => {
+		client.settings.forEach(entry => {
 			if (previousCategory !== entry.category) {
 				if (previousCategory) tempHTML += "</div>";
 				previousCategory = entry.category;

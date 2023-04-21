@@ -13,9 +13,6 @@ export default class AccountManager {
 	public manager: WindowManager
 	public add: WindowManager
 
-	constructor() {
-	}
-
 	public init() {
 		this.manager = new WindowManager("accManagerBtn");
 		this.add = new WindowManager("altAdd");
@@ -49,12 +46,15 @@ export default class AccountManager {
 		(window).logoutAcc();
 		(<HTMLInputElement>document.getElementById("accName")).value = account.username;
 		(<HTMLInputElement>document.getElementById("accPass")).value = account.password;
-		//@ts-ignore
-		(window).loginAcc();
 		(<HTMLInputElement>document.getElementById("accName")).style.display = "none";
 		(<HTMLInputElement>document.getElementById("accPass")).style.display = "none";
+		//@ts-ignore
+		(window).loginAcc();
+		//@ts-ignore
+		(window).loginAcc();
 		(<HTMLInputElement>document.getElementsByClassName("accountButton")[0]).style.display = "none";
-		(<HTMLInputElement>document.getElementsByClassName("accountButton")[1]).style.display = "none";
+		//@ts-ignore
+		console.log(window.loginAcc)
 	};
 
 	public openPopup() {
@@ -87,7 +87,7 @@ export default class AccountManager {
 
 		document.querySelectorAll(".altlistelement").forEach(i => i.addEventListener("click", (e) => {
 			//@ts-ignore
-			let selected = storage.find(obj => obj.username === /** @type {inputs} */ (e.target).innerText);
+			let selected = storage.find(obj => obj.username === (e.target).innerText);
 			this.login({
 				username: selected.username,
 				password: (!!selected.format && selected.format === "b64")
@@ -116,4 +116,3 @@ export default class AccountManager {
 	}
 }
 
-module.exports = AccountManager;

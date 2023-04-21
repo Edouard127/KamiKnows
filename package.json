@@ -6,9 +6,9 @@
 	"private": true,
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsc && electron build/src/main.js --enable-login",
+		"dev": "tsc && electron app/src/main.js --enable-login",
 		"start": "electron .",
-		"pack": "cd build && electron-builder --dir",
+		"pack": "cd app && electron-builder --dir",
 		"dist": "electron-builder --publish=always",
 		"postinstall": "electron-builder install-app-deps"
 	},

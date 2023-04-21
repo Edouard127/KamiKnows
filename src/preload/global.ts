@@ -20,7 +20,7 @@ const windowType = UrlUtils.locationType(location.href);
 const delayIDs = {}
 
 const tempClient = new KrunkerClient(config, ExportSetting)
-start(tempClient.settings)
+start(tempClient)
 
 
 window.prompt = (message, defaultValue) => ipcRenderer.sendSync("prompt", message, defaultValue);

@@ -63,7 +63,7 @@ export default class KrunkerClient extends AbstractClient {
 
 		this.browser = window
 
-		this.loadWindow(false); // I'll fix that later
+		this.loadWindow(true); // I'll fix that later
 
 		if (!webContents) window.loadURL(url);
 
