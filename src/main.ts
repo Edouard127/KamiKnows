@@ -1,4 +1,4 @@
-import {app, contextBridge, ipcRenderer, protocol} from "electron";
+import {app, protocol} from "electron";
 import Store from "electron-store";
 import log from "electron-log";
 import yargs from "yargs";
@@ -7,7 +7,6 @@ import KrunkerClient from "./core/class/KrunkerClient";
 import {ExportSetting} from "./core/settings/export";
 import PathUtils from "./utils/PathUtils";
 import path from "path";
-import Swapper from "./modules/swapper";
 
 Object.assign(console, log.functions)
 

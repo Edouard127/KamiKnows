@@ -107,5 +107,4 @@ dist
 *.env
 
 .idea
-build/*
-app/
+app/*

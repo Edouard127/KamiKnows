@@ -31,7 +31,7 @@ export default class KrunkerClient extends AbstractClient {
 		this.config = config
 		this.settings = settings
 		this.account = new AccountManager()
-		this.rpc = new RPCHandler("770954802443059220", (config.get("discordRPC", true) as boolean)) // I'll fix that later
+		this.rpc = new RPCHandler("1117513370002788512", (config.get("discordRPC", true) as boolean))
 		this.ipc = new IpcLoader(this, config)
 		this.bus = new EventEmitter()
 		this.registerPlugins()
